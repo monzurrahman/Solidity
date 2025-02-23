@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+contract Todolist{
+    struct Task {
+        string content;
+        bool completed; 
+    }
+
+    Task[] public tasks; // declared/created an array named Task
+    // Add a new task
+    function  addTask(string memory _content) public {
+        tasks.push(Task(_content, false));
+    }
+
+    // Mark task as completed
+    function completetask(uint taskIndex) public {
+        require(taskIndex < tasks.length,"Task should be lower than number of task");
+        tasks[taskIndex].completed = true;
+    }
+        // get task details
+    function getTask(uint taskIndex) public view returns(string memory content, bool completed){
+        require(taskIndex < tasks.length, "The task doens't exist");
+        Task storage task = tasks[taskIndex];
+        return (task.content, task.completed);
+
+    }
+
+
+}
