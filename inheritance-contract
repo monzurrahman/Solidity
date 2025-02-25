@@ -1,0 +1,19 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+contract Animal{
+    string public specis;
+    function makesound() public pure virtual returns(string memory) {   //virtual means to be overrided by a inherited contract 
+        return ".....";
+    }
+}
+
+contract Dog is Animal{
+    constructor(){
+        specis= "Dog";
+    }
+
+    function makesound() public pure override returns(string memory){ // override means to override a main contract
+        return "Animal sound";
+    }
+}
